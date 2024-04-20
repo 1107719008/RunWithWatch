@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode">
+    
+    <!-- Waypoint 1 -->
+    <wpt lat="25.024715" lon="121.545132">
+        <name>Point 1</name>
+        <time>2024-04-20T08:00:00Z</time>
+    </wpt>
+    
+    <!-- Waypoint 2 -->
+    <wpt lat="25.024736" lon="121.543521">
+        <name>Point 2</name>
+        <time>2024-04-20T08:01:00Z</time>
+    </wpt>
+    
+    <!-- Waypoint 3 -->
+    <wpt lat="25.022939" lon="121.543451">
+        <name>Point 3</name>
+        <time>2024-04-20T08:02:00Z</time>
+    </wpt>
+    
+    
+</gpx>
