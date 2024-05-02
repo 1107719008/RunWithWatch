@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct FinishRunView: View {
-    //各項數據
-//    @Binding var meters:Double
-//    @Binding var usedTime:Int
     
     //for control finish page
     @Binding var isFinishViewActive: Bool
     @State private var navigateToTotalScore = false
+    
+    //各項數據
+    @Binding var totalMeters: Int
+    @Binding var usedTime: Int
+    @Binding var friendDis: Int
     
     var body: some View {
         NavigationView{
@@ -29,7 +31,7 @@ struct FinishRunView: View {
                     
                 }
                 .background(
-                    NavigationLink( destination: TotalScoreView(),
+                    NavigationLink( destination: TotalScoreView(totalMeters:$totalMeters,usedTime:$usedTime,friendDis: $friendDis),
                                     isActive: $navigateToTotalScore,
                                     label: { EmptyView() }
                                     )

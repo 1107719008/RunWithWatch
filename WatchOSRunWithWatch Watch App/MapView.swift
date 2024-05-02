@@ -11,6 +11,8 @@ import MapKit
 import CoreLocation
 
 import AVFoundation
+import WatchKit
+
 
 struct MapAnnotationItem: Identifiable {
     let id = UUID()
@@ -139,11 +141,14 @@ struct MapView: View {
     
     //speak 文字
     private let speechSynthesizer = AVSpeechSynthesizer()
-    
+    @State private var isCatchOnFriend: Bool = false
+    @State private var hasSpeak:Bool = false
     
     
     var body: some View {
+        
         NavigationView{
+            
             ZStack{
                 
                 
@@ -197,24 +202,65 @@ struct MapView: View {
                             //                        pathEntity.timestamp = location.timestamp
                             //                        coreDataPath.saveContext()
                             
-                            
-                            //計算距離（history的）
-                            let timeStamp = counter
-                            let coordinatesBeforeTime = pathCoordinatesBefore(timeStamp: timeStamp, pathCoordinates: oldPathCoordinates)
-                            let totalDistance = totalDistanceBetweenCoordinates(coordinates: coordinatesBeforeTime)
-                            print("在时间 \(timeStamp) 秒之前的路径点之间的距离总和为 \(totalDistance) 米")
-                            
-                            //計算距離（User的）
-                            let coordinatesBeforeTimeUser = pathCoordinatesBefore(timeStamp: timeStamp, pathCoordinates: pathCoordinatesUser)
-                            let totalDistanceUser = totalDistanceBetweenCoordinates(coordinates: coordinatesBeforeTimeUser)
-                            print("User在时间 \(timeStamp) 秒之前的路径点之间的距离总和为 \(totalDistanceUser) 米")
-                            friendDis = Int(totalDistanceUser.rounded() - totalDistance.rounded())
-                            meterRun = Int(totalDistanceUser.rounded())
-                            if friendDis>0{
-                                isReachedFriendMeter = true
-                            }else{
-                                isReachedFriendMeter = false
+                            //card value count
+                            if !isFinishViewActive{
+                                //計算距離（history的）
+                                let timeStamp = counter
+                                let coordinatesBeforeTime = pathCoordinatesBefore(timeStamp: timeStamp, pathCoordinates: oldPathCoordinates)
+                                let totalDistance = totalDistanceBetweenCoordinates(coordinates: coordinatesBeforeTime)
+                                print("在时间 \(timeStamp) 秒之前的路径点之间的距离总和为 \(totalDistance) 米")
+                                
+                                //計算距離（User的）
+                                let coordinatesBeforeTimeUser = pathCoordinatesBefore(timeStamp: timeStamp, pathCoordinates: pathCoordinatesUser)
+                                let totalDistanceUser = totalDistanceBetweenCoordinates(coordinates: coordinatesBeforeTimeUser)
+                                print("User在时间 \(timeStamp) 秒之前的路径点之间的距离总和为 \(totalDistanceUser) 米")
+                                friendDis = Int(totalDistanceUser.rounded() - totalDistance.rounded())
+                                meterRun = Int(totalDistanceUser.rounded())
+                                
+                                if friendDis>0{
+                                    isReachedFriendMeter = true
+                                }else{
+                                    isReachedFriendMeter = false
+                                }
+                                
+                                
+                                
+                                if friendDis>=20 && friendDis<=40{
+                                    if !hasSpeak{
+                                        //read meter
+                                        speak("很好、你已經超越朋友\(friendDis)公尺")
+                                        print("超越了！！")
+                                        hasSpeak = true
+                                    }
+                                }
+                                
+                                //離30m時提醒
+                                if friendDis == -30 && hasSpeak == false{
+                                            speak("再加把勁")
+                                            speak("距離朋友還有\(friendDis)公尺")
+                                            
+                                            hasSpeak = true
+                                }
+                                
+                                
+                                if counter == 29{hasSpeak = false}
+                                if counter == 58{hasSpeak = false}
+                                if counter == 90{hasSpeak = false}
+                                if counter == 119{hasSpeak = false}
+                                if counter == 150{hasSpeak = false}
+                                
+                                //30秒提醒
+                                if counter >= 30{
+                                    if !hasSpeak{
+                                        speak("目前距離朋友\(friendDis)公尺")
+                                        
+                                        hasSpeak = true
+                                    }
+                                }
+                                
+                                
                             }
+                                
                         }
                         //region = newRegion
                     }
@@ -231,6 +277,8 @@ struct MapView: View {
                         
                         
                     }
+                    
+                    
                     
                     
                 }
@@ -272,7 +320,9 @@ struct MapView: View {
                 )
                 .offset(y:65)
                 .onReceive(timer) { _ in
-                    updateTimer()
+                    if !isFinishViewActive{
+                        updateTimer()
+                    }
                 }
                 
                 
@@ -280,7 +330,11 @@ struct MapView: View {
             
             
         }.sheet(isPresented: $isFinishViewActive) {
-            FinishRunView(isFinishViewActive: $isFinishViewActive)
+            FinishRunView(isFinishViewActive: $isFinishViewActive,totalMeters: $meterRun,usedTime: $counter,friendDis: $friendDis)
+            //finsh
+            //@Binding var totalMeters: Int
+            //@Binding var usedTime: Int
+            //@Binding var friendDis: Int
         }
         
     }
@@ -333,12 +387,16 @@ struct MapView: View {
     
     //語音功能、讀文字
     func speak(_ message: String) {
-            let utterance = AVSpeechUtterance(string: message)
-            utterance.voice = AVSpeechSynthesisVoice(language: "zh-CN")
-            utterance.rate = 0.5 // 调整语速
-            speechSynthesizer.speak(utterance)
-        }
+        let utterance = AVSpeechUtterance(string: message)
+        utterance.voice = AVSpeechSynthesisVoice(language: "zh-CN")
+        utterance.rate = 0.5 // 调整语速
+        speechSynthesizer.speak(utterance)
+    }
     
+    //vibrate
+    func vibrate() {
+        WKInterfaceDevice.current().play(.notification)
+    }
     
     
 }
