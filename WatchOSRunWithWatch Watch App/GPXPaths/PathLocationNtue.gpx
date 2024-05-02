@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="OpenAI">
+    
+    <!-- Waypoints -->
+    <wpt lat="25.022788" lon="121.544364">
+        <name>Point 1</name>
+    </wpt>
+    <wpt lat="25.02255913499423" lon="121.54447581916008">
+        <name>Point 2</name>
+    </wpt>
+    <wpt lat="25.022526931390132" lon="121.54462267009626">
+        <name>Point 3</name>
+    </wpt>
+    <wpt lat="25.02261260511019" lon="121.54480103699842">
+        <name>Point 4</name>
+    </wpt>
+    <wpt lat="25.022757217353824" lon="121.54482517687835">
+        <name>Point 5</name>
+    </wpt>
+    <wpt lat="25.02291701976252" lon="121.5448325529547">
+        <name>Point 6</name>
+    </wpt>
+    <wpt lat="25.023062239263986" lon="121.54481713025213">
+        <name>Point 7</name>
+    </wpt>
+    <wpt lat="25.023352" lon="121.544833">
+        <name>Point 8</name>
+    </wpt>
+    <wpt lat="25.023442" lon="121.544648">
+        <name>Point 9</name>
+    </wpt>
+    <wpt lat="25.023378365449418" lon="121.54445699190435">
+        <name>Point 10</name>
+    </wpt>
+    <wpt lat="25.02311183093742" lon="121.54441944629646">
+        <name>Point 11</name>
+    </wpt>
+    <wpt lat="25.0229736783117" lon="121.54437622838545">
+        <name>Point 12</name>
+    </wpt>
+    <wpt lat="25.022788" lon="121.544364">
+        <name>Point 13</name>
+    </wpt>
+    
+    <!-- Track (closed polygon) -->
+    <trk>
+        <trkseg>
+            <trkpt lat="25.022788" lon="121.544364"/>
+            <trkpt lat="25.02255913499423" lon="121.54447581916008"/>
+            <trkpt lat="25.022526931390132" lon="121.54462267009626"/>
+            <trkpt lat="25.02261260511019" lon="121.54480103699842"/>
+            <trkpt lat="25.022757217353824" lon="121.54482517687835"/>
+            <trkpt lat="25.02291701976252" lon="121.5448325529547"/>
+            <trkpt lat="25.023062239263986" lon="121.54481713025213"/>
+            <trkpt lat="25.023352" lon="121.544833"/>
+            <trkpt lat="25.023442" lon="121.544648"/>
+            <trkpt lat="25.023378365449418" lon="121.54445699190435"/>
+            <trkpt lat="25.02311183093742" lon="121.54441944629646"/>
+            <trkpt lat="25.0229736783117" lon="121.54437622838545"/>
+            <trkpt lat="25.022788" lon="121.544364"/>
+        </trkseg>
+    </trk>
+    
+</gpx>

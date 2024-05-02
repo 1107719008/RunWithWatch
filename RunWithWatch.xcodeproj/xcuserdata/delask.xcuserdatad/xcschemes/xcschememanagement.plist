@@ -7,7 +7,45 @@
 		<key>RunWithWatch.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>WatchOSRunWithWatch Watch App.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>9A178DFD2BBE9F90006956E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9A178E0D2BBE9F92006956E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9A178E172BBE9F92006956E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9A178E2E2BBE9FE9006956E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9A178E3D2BBE9FEC006956E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9A178E472BBE9FEC006956E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

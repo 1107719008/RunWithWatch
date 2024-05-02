@@ -8,10 +8,10 @@
 import Foundation
 import CoreData
 
-class CoreDataStack {
+class CoreDataStack: ObservableObject {
     static let shared = CoreDataStack()
     
-    private init() {}
+    init() {}
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "PathModel")
@@ -27,14 +27,24 @@ class CoreDataStack {
         return persistentContainer.viewContext
     }
     
+    // Save data
     func saveContext() {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Failed to save Core Data context: \(nsError), \(nsError.userInfo)")
-            }
+        let context = persistentContainer.viewContext
+        guard context.hasChanges else {
+            print("No changes to save")
+            return
+        }
+        
+        do {
+            try context.save()
+            print("Data has saved!")
+        } catch {
+            let nsError = error as NSError
+            fatalError("Failed to save Core Data context: \(nsError), \(nsError.userInfo)")
         }
     }
+    
+    //add new route
+    
+    
 }

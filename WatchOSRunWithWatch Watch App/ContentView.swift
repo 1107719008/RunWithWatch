@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    //location won't show in live preview, use simulator or device
+    @EnvironmentObject var locationManager: LocationManager
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView{
+            HomeView()
         }
-        .padding()
+                
+                
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(LocationManager())
 }
