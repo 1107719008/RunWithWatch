@@ -332,7 +332,7 @@ struct MapView: View {
                             .cornerRadius(30) // 设置圆角
                     }.background(Color(.clear))
                         .frame(width: 30, height: 30)
-                        .offset(x:70,y:-103)
+                        .offset(x:70,y:-75)
                         .buttonStyle(PlainButtonStyle())
                     
                     
