@@ -225,38 +225,69 @@ struct MapView: View {
                                 
                                 
                                 
-                                if friendDis>=20 && friendDis<=40{
-                                    if !hasSpeak{
-                                        //read meter
-                                        speak("很好、你已經超越朋友\(friendDis)公尺")
-                                        print("超越了！！")
+//                                if friendDis>=20 && friendDis<=40{
+//                                    if !hasSpeak{
+//                                        //read meter
+//                                        speak("很好、你已經超越朋友\(friendDis)公尺")
+//                                        print("超越了！！")
+//                                        hasSpeak = true
+//                                    }
+//                                }
+//                                
+//                                //離30m時提醒
+//                                if friendDis == -30 && hasSpeak == false{
+//                                            speak("再加把勁")
+//                                            speak("距離朋友還有\(friendDis)公尺")
+//                                            
+//                                            hasSpeak = true
+//                                }
+//                                
+//                                
+//                                if counter == 29{hasSpeak = false}
+//                                if counter == 58{hasSpeak = false}
+//                                if counter == 90{hasSpeak = false}
+//                                if counter == 119{hasSpeak = false}
+//                                if counter == 150{hasSpeak = false}
+//                                
+//                                //30秒提醒
+//                                if counter >= 30{
+//                                    if !hasSpeak{
+//                                        speak("加油")
+//                                        speak("目前距離朋友\(friendDis)公尺")
+//                                        
+//                                        hasSpeak = true
+//                                    }
+//                                }
+                                print(hasSpeak)
+                                if !hasSpeak {
+                                    // 超越時提醒
+                                    if friendDis >= 0 && counter >= 5 {
+                                        speak("很好，你已經超越朋友\(friendDis)公尺")
+                                        print("超越了！")
                                         hasSpeak = true
                                     }
-                                }
-                                
-                                //離30m時提醒
-                                if friendDis == -30 && hasSpeak == false{
-                                            speak("再加把勁")
-                                            speak("距離朋友還有\(friendDis)公尺")
-                                            
-                                            hasSpeak = true
-                                }
-                                
-                                
-                                if counter == 29{hasSpeak = false}
-                                if counter == 58{hasSpeak = false}
-                                if counter == 90{hasSpeak = false}
-                                if counter == 119{hasSpeak = false}
-                                if counter == 150{hasSpeak = false}
-                                
-                                //30秒提醒
-                                if counter >= 30{
-                                    if !hasSpeak{
-                                        speak("目前距離朋友\(friendDis)公尺")
-                                        
+                                    
+                                    // 距離 -20~-40 內提醒
+                                    if friendDis >= -40 && friendDis <= -20 {
+                                        speak("再加把勁，快追上了還有\(friendDis)公尺")
                                         hasSpeak = true
                                     }
+                                    
+                                    // 30秒提醒
+                                    if counter >= 30 && counter % 30 == 0 {
+                                        speak("加油，目前距離朋友\(friendDis)公尺")
+                                        hasSpeak = true
+                                    }
+                                    
+                                 
                                 }
+                                
+                                // 計時器時間點的重設
+                                if [10,29, 58, 88, 118, 149].contains(counter) {
+                                    hasSpeak = false
+                                }
+                                
+                                
                                 
                                 
                             }

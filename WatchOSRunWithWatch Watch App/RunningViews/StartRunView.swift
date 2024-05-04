@@ -49,21 +49,21 @@ struct StartRunView: View {
             
             NavigationLink(destination: MapView(isRecording: $isStartRecording)){
                 //start btn
-                Button(action: {
-                    //logic here
-                    print("Button tapped!")
-                    
-                    
-                }) {
-                     //按钮文本
-                    Text("開始")
-                        .foregroundColor(.white) // 文本颜色
-                        //.cornerRadius(30)
-                    
-                    
-                }
-                //.padding(.top, 10)
-                .buttonStyle(PlainButtonStyle()) //移除默認樣式
+//                Button(action: {
+//                    //logic here
+//                    print("Button tapped!")
+//                    
+//                    
+//                }) {
+//                     //按钮文本
+                Text("開始")
+//                        .foregroundColor(.white) // 文本颜色
+//                        //.cornerRadius(30)
+//                    
+//                    
+//                }
+//                //.padding(.top, 10)
+//                .buttonStyle(PlainButtonStyle()) //移除默認樣式
                 
                 
                 
